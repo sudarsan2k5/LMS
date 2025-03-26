@@ -1,6 +1,6 @@
-const cookieParser = require("cookie-parser");
-const express = require("express");
-const cors = require("cors");
+import cookieParser from "cookie-parser";
+import express from "express";
+import cors from "cors";
 const app = express();
 
 app.use(express.json());
@@ -23,4 +23,4 @@ app.all("*", (req, res) => {
   res.status(404).send("OOPS!! ERROR NOT FOUND");
 });
 
-module.exports = app;
+export default app;
