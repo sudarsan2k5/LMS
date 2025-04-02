@@ -2,7 +2,8 @@ import cookieParser from "cookie-parser";
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import router from "./routes/user.routs";
+import userRoutes from "./routes/user.routes.js";
+import errorMiddleware from "./middlewares/error.middleware.js";
 const app = express();
 
 app.use(express.json());
@@ -22,10 +23,12 @@ app.get("/", (req, res) => {
 
 // Routes of 3 modules
 
-app.use("/api/v1/user", router, () => {});
+app.use("/api/v1/user", userRoutes);
 
 app.all("*", (req, res) => {
   res.status(404).send("OOPS!! ERROR NOT FOUND");
 });
+
+app.use(errorMiddleware)
 
 export default app;
